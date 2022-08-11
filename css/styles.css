@@ -2,3 +2,89 @@ body {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 500;
 }
+
+header {
+  position: relative;
+  padding: 1.5rem 1rem;
+  background-image: url('../images/bg-main-mobile.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: hsl(0, 0%, 100%);
+}
+
+#bg-card-back {
+  position: relative;
+  width: 80%;
+  margin-right: 0;
+  margin-left: auto;
+  padding-bottom: 1rem;
+}
+
+#bg-card-back > div {
+  position: absolute;
+  top: 65px;
+  right: 35px;
+  font-size: .75rem;
+}
+
+#bg-card-front {
+  position: absolute;
+  width: 80%;
+  bottom: -60px;
+}
+
+#card-info {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
+#card-patterns {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+#card-patterns > span {
+  border-radius: 50%;
+}
+
+#white-circle {
+  width: 32px;
+  height: 32px;
+  background-color: hsl(0, 0%, 100%);
+  margin-right: .5rem;
+}
+
+#clear-circle {
+  width: 16px;
+  height: 16px;
+  border: 1px solid hsl(0, 0%, 100%);
+}
+
+#card-info > div {
+  width: 100%;
+  flex: 1 100%;
+}
+
+#card-info > div:first-of-type {
+  margin-bottom: .5rem;
+  font-size: 1.15rem;
+  letter-spacing: .1rem;
+}
+
+#card-info > div:last-of-type {
+  display: flex;
+  justify-content: space-between;
+  font-size: .85rem;
+}
+
+
+
+
+
