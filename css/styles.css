@@ -3,6 +3,10 @@ body {
   font-weight: 500;
 }
 
+.hide {
+  display: none !important;
+}
+
 header {
   position: relative;
   padding: 1.5rem 1rem;
@@ -14,7 +18,7 @@ header {
 
 #bg-card-back {
   position: relative;
-  width: 80%;
+  width: 75%;
   margin-right: 0;
   margin-left: auto;
   padding-bottom: 1rem;
@@ -22,15 +26,15 @@ header {
 
 #bg-card-back > div {
   position: absolute;
-  top: 65px;
+  top: 60px;
   right: 35px;
   font-size: .75rem;
 }
 
 #bg-card-front {
   position: absolute;
-  width: 80%;
-  bottom: -60px;
+  width: 75%;
+  bottom: -55px;
 }
 
 #card-info {
@@ -74,7 +78,7 @@ header {
 
 #card-info > div:first-of-type {
   margin-bottom: .5rem;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   letter-spacing: .1rem;
 }
 
@@ -83,6 +87,118 @@ header {
   justify-content: space-between;
   font-size: .85rem;
 }
+
+main {
+  padding-top: 5rem;
+  width: 90%;
+  margin: 0 auto;
+  color:hsl(278, 68%, 11%);
+  font-size: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+form > label {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1 100%;
+  text-transform: uppercase;
+}
+
+form > label > div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: .5rem;
+  position: relative;
+  border: 1px solid transparent;
+  background:hsl(0, 0%, 100%);
+  background-clip: padding-box;
+  border-radius: 10px;
+}
+
+form > label > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -1px;
+  border-radius: inherit;
+  background: hsl(270, 3%, 87%);
+}
+
+form > label > div.focus::before {
+  background: linear-gradient(hsl(249, 99%, 64%),hsl(278, 94%, 30%))
+}
+
+form > label > div.error::before {
+  background: hsl(0, 100%, 66%);
+}
+
+form > label > span {
+  font-size: 12px;
+  color: hsl(0, 100%, 66%);
+  margin-top: .5rem;
+}
+
+form > label > div > input {
+  padding: .75rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: hsl(0, 0%, 100%);
+}
+
+input::placeholder {
+  color: hsl(270, 3%, 87%);
+}
+
+input:focus {
+  outline: none !important;
+}
+
+#label-exp-date, #label-cvc {
+  flex: 2 45%;
+  width: 45%;
+}
+
+#label-exp-date {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#label-exp-date > div {
+  flex: 2 45%;
+  width: 45%;
+}
+
+#label-exp-date > div:first-of-type {
+  margin-right: .5rem;
+}
+
+#label-cvc {
+  margin-left: .5rem;
+}
+
+form > input {
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: hsl(278, 68%, 11%);
+  color: hsl(0, 0%, 100%);
+  flex: 1 100%;
+  margin-top: .5rem;
+}
+
+
 
 
 
