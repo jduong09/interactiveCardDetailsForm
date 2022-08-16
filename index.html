@@ -45,7 +45,7 @@
       <label for="card-number" id="label-number">
         Card Number
         <div>
-          <input type="text" minlength="19" maxlength="19"  placeholder="e.g. 1234 5678 9123 0000" name="card-number" />
+          <input type="text" minlength="19" maxlength="19" pattern="/\d{4}\s\d{4}\s\d{4}\s\d{4}/"  placeholder="e.g. 1234 5678 9123 0000" name="card-number" />
         </div>
         <span class="hide">Wrong format, numbers only</span>
       </label>
@@ -65,7 +65,7 @@
           <input type="number" placeholder="e.g. 123" name="card-cvc" />
         </div>
       </label>
-      <input type="submit" value="Confirm" />
+      <input id="form-submit-btn" type="submit" value="Confirm" />
     </form>
     <div class="hide">
       <img id="icon-complete" src="images/icon-complete.svg" alt="checkmark icon" />
