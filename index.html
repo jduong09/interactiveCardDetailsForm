@@ -51,13 +51,15 @@
       </label>
       <label for="card-exp-date" id="label-exp-date">
         Exp. Date (MM/YY)
-        <div>
+        <div id="div-input-month">
           <input type="number" id="form-input-month" min="1" max="12" placeholder="MM" name="card-exp-date" required/>
         </div>
-        <div>
-          <input type="number" id="form-input-year" min="1900" max="2099" placeholder="YY" name="card-exp-date" required/>
+        <span id="month-blank" class="hide">Can't be blank</span>
+        <div id="div-input-year">
+          <input type="number" id="form-input-year" min="2022" max="2099" placeholder="YY" name="card-exp-date" required/>
         </div>
-        <span class="hide">Can't be blank</span>
+        <span id="exp-date-error" class="hide">Out of Range</span>
+        <span id="year-blank" class="hide">Can't be blank</span>
       </label>
       <label for="card-cvc" id="label-cvc">
         CVC

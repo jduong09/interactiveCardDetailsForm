@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const inputDivs = document.querySelectorAll('label div');
+  const cardForm = document.getElementById('form-card-info');
   const labelCardNumber = document.getElementById('label-number');
   const inputCardNumber = document.getElementById('input-card-number');
   const submitBtn = document.getElementById('form-submit-btn');
@@ -10,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function validateForm() {
     // Card name should be two words of letters?
-
-    const cardNameRegEx = new RegExp('^((?:[A-Za-z]+ ?){1,3})$');
-    const cardNumberRegEx = new RegExp('\d{4}\s\d{4}\s\d{4}\s\d{4}');
+    const cardNameRegEx = /^((?:[A-Za-z]+ ?){1,3})$/;
+    const cardNumberRegEx = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+    const cardMonthRegEx = /^\d{1,2}$/;
+    const cardYearRegEx = /^20[2-5]\d{1}$/;
+    const cardCvcRegEx = /^\d{3}$/;
     
-    console.log(cardName.test(formInputName.value));
-
-    if (cardName.test(formInputName.value)) {
-
+    if (cardNameRegEx.test(formInputName.value) && cardNumberRegEx.test(inputCardNumber.value) && cardMonthRegEx.test(formInputMonth.value) && cardYearRegEx.test(formInputYear.value) && cardCvcRegEx.test(formInputCvc.value)) {
+      console.log('Form validated');
     }
   }
 
@@ -75,11 +76,52 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   formInputMonth.addEventListener('input', (e) => {
-    if (isNaN(e.data)) {
-      console.log('not allowed');
-      e.target.value = e.target.value.slice(0, -1);
+    const monthError = document.getElementById('exp-date-error');
+    const divMonth = document.getElementById('div-input-month');
+    if (isNaN(e.data) || !e.data) {
+      return false;
     }
-  })
+
+    if (formInputMonth.value.length > 2) {
+      formInputMonth.value = formInputMonth.value.slice(0, -1);
+    }
+
+    if (formInputMonth.value > 12) {
+      monthError.classList.remove('hide');
+      divMonth.classList.add('error');
+    } else {
+      if (!monthError.classList.contains('hide')) {
+        monthError.classList.add('hide');
+        divMonth.classList.remove('error');
+      }
+    }
+  });
+
+  formInputYear.addEventListener('input', (e) => {
+    const yearError = document.getElementById('exp-date-error');
+    const divYear = document.getElementById('div-input-year')
+    if (isNaN(e.data) || !e.data) {
+      return false;
+    }
+
+    if (formInputYear.value.length > 4) {
+      formInputYear.value = formInputYear.value.slice(0, -1);
+    }
+
+    if (formInputYear.value.length === 4 && formInputYear.value < 2023) {
+      yearError.classList.remove('hide');
+      divYear.classList.add('error');
+    } else {
+      if (!yearError.classList.contains('hide')) {
+        yearError.classList.add('hide');
+        divYear.classList.remove('error');
+      }
+    }
+  });
+
+  formInputCvc.addEventListener('input', (e) => {
+
+  });
 
   // When confirm button is clicked, we need to check to make sure all fields have been filled.
   submitBtn.addEventListener('click', (e) => {
@@ -90,6 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('stop.');
     }
     // Check to make sure all the form fields have correct values.
-    validateForm();
+    if (validateForm()) {
+
+    } else { // form is not validated
+
+    }
   });
 });
