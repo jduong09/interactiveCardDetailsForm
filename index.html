@@ -17,7 +17,7 @@
   <header>
     <div id="bg-card-back">
       <img id="img-card-back" src="images/bg-card-back.png" alt="backside of card" />
-      <div id="card-code">000</div>
+      <div id="header-card-code">000</div>
     </div>
     <div id="bg-card-front">
       <img id="img-card-front" src="images/bg-card-front.png" alt="frontside of card" />
@@ -26,10 +26,10 @@
         <span id="clear-circle"></span>
       </div>
       <div id="card-info">
-        <div>0000 0000 0000 0000</div>
+        <div id="header-card-number">0000 0000 0000 0000</div>
         <div>
-          <span>Jane Appleseed</span>
-        <span>00/00</span>
+          <span id="header-card-name">Jane Appleseed</span>
+        <span id="header-card-exp">00/00</span>
       </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
         <div>
           <input id="input-card-number" type="text" minlength="19" maxlength="19" pattern="\d{4}\s\d{4}\s\d{4}\s\d{4}"  placeholder="e.g. 1234 5678 9123 0000" name="card-number" required/>
         </div>
-        <span class="hide">Wrong format, numbers only</span>
+        <span id="number-invalid" class="hide">Invalid Input</span>
       </label>
       <label for="card-exp-date" id="label-exp-date">
         Exp. Date (MM/YY)
@@ -66,14 +66,16 @@
         <div>
           <input type="number" id="form-input-cvc" min="000" max="999" placeholder="e.g. 123" name="card-cvc" required/>
         </div>
+        <span id="cvc-format" class="hide">Incorrect Format</span>
+        <span id="cvc-blank" class="hide">Can't be blank</span>
       </label>
       <input id="form-submit-btn" type="submit" value="Confirm" />
     </form>
-    <div class="hide">
+    <div id="div-form-complete" class="hide">
       <img id="icon-complete" src="images/icon-complete.svg" alt="checkmark icon" />
       <b>Thank you!</b>
       <div>We've added your card details</div>
-      <a>Continue</a>
+      <a id="complete-form-continue">Continue</a>
     </div>
   </main>
 </body>

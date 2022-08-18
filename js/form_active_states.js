@@ -8,6 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const formInputMonth = document.getElementById('form-input-month');
   const formInputYear = document.getElementById('form-input-year');
   const formInputCvc = document.getElementById('form-input-cvc');
+  const divFormComplete = document.getElementById('div-form-complete');
+  const completeFormContinueBtn = document.getElementById('complete-form-continue');
+
+  const headerCardCode = document.getElementById('header-card-code');
+  const headerCardName = document.getElementById('header-card-name');
+  const headerCardNumber = document.getElementById('header-card-number');
+  const headerCardExp = document.getElementById('header-card-exp');
 
   function validateForm() {
     // Card name should be two words of letters?
@@ -16,10 +23,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardMonthRegEx = /^\d{1,2}$/;
     const cardYearRegEx = /^20[2-5]\d{1}$/;
     const cardCvcRegEx = /^\d{3}$/;
+    const numberInvalidError = document.getElementById('number-invalid');
+    const cvcFormatError = document.getElementById('cvc-format');
+
+    if (!cardNumberRegEx.test(inputCardNumber.value)) {
+      numberInvalidError.classList.remove('hide');
+      numberInvalidError.parentElement.children[0].classList.add('error');
+    }
+
+    if (!cardCvcRegEx.test(formInputCvc.value)) {
+      cvcFormatError.classList.remove('hide');
+      cvcFormatError.parentElement.children[0].classList.add('error');
+    }
     
     if (cardNameRegEx.test(formInputName.value) && cardNumberRegEx.test(inputCardNumber.value) && cardMonthRegEx.test(formInputMonth.value) && cardYearRegEx.test(formInputYear.value) && cardCvcRegEx.test(formInputCvc.value)) {
       console.log('Form validated');
+      numberInvalidError.classList.add('hide');
+      numberInvalidError.parentElement.children[0].classList.remove('error');
+
+      cvcFormatError.classList.add('hide');
+      cvcFormatError.parentElement.children[0].classList.remove('error');
+
+      return true;
     }
+
+    return false;
   }
 
   for (let i = 0; i < inputDivs.length; i++) {
@@ -86,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       formInputMonth.value = formInputMonth.value.slice(0, -1);
     }
 
-    if (formInputMonth.value > 12) {
+    if (formInputMonth.value < 1 || formInputMonth.value > 12) {
       monthError.classList.remove('hide');
       divMonth.classList.add('error');
     } else {
@@ -120,7 +148,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   formInputCvc.addEventListener('input', (e) => {
+    const cvcBlankError = document.getElementById('cvc-blank');
+    if (formInputCvc.value.length > 3 || e.data == 'e' || e.data == '-' || e.data == '+' || e.data == '.') {
+      formInputCvc.value = formInputCvc.value.slice(0, -1);
+    }
 
+    if (formInputCvc.value.length === 0) {
+      if (cvcBlankError.classList.contains('hide')) {
+        cvcBlankError.classList.remove('hide');
+        cvcBlankError.parentElement.children[0].classList.add('error');
+      }
+    } else {
+      if (!cvcBlankError.classList.contains('hide')) {
+        cvcBlankError.classList.add('hide');
+        cvcBlankError.parentElement.children[0].classList.remove('error');
+      }
+    }
   });
 
   // When confirm button is clicked, we need to check to make sure all fields have been filled.
@@ -129,13 +172,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check to make sure all the form fields have values.
     if (!formInputName.value || !inputCardNumber.value || !formInputMonth.value || !formInputYear.value || !formInputCvc.value) {
-      console.log('stop.');
+      return false;
     }
+
     // Check to make sure all the form fields have correct values.
     if (validateForm()) {
+      // If form is validated, we want to show the checkout screen
+      // And also change the credit card background image to match what the user inputed.
+      headerCardCode.innerHTML = formInputCvc.value;
+      headerCardName.innerHTML = formInputName.value;
+      headerCardNumber.innerHTML = inputCardNumber.value;
+      headerCardExp.innerHTML = formInputMonth.value.length === 1 ? `0${formInputMonth.value}/${formInputYear.value.slice(-2)}` : `${formInputMonth.value}/${formInputYear.value.slice(-2)}`;
 
-    } else { // form is not validated
-
+      cardForm.classList.add('hide');
+      divFormComplete.classList.remove('hide');
+    } else { 
+      // Form is not validated
+      return false;
     }
+  });
+
+  completeFormContinueBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    headerCardCode.innerHTML = '000';
+    headerCardName.innerHTML = 'Jane Applewood';
+    headerCardNumber.innerHTML = '0000 0000 0000 0000';
+    headerCardExp.innerHTML = '00/00';
+
+    formInputName.value = '';
+    inputCardNumber.value = '';
+    formInputMonth.value = '';
+    formInputYear.value = '';
+    formInputCvc.value = '';
+
+    cardForm.classList.remove('hide');
+    divFormComplete.classList.add('hide');
   });
 });
