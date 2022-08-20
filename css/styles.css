@@ -26,8 +26,8 @@ header {
 
 #bg-card-back > div {
   position: absolute;
-  top: 60px;
-  right: 35px;
+  top: 38%;
+  right: 15%;
   font-size: .75rem;
 }
 
@@ -229,4 +229,86 @@ form > input {
   color: hsl(0, 0%, 100%);
   border-radius: 8px;
   cursor: pointer;
+}
+
+@media (min-width: 475px) {
+  #bg-card-back, #bg-card-front {
+    width: 65%;
+  }
+
+  #bg-card-front {
+    bottom: -30px;
+  }
+
+  main {
+    padding-top: 4rem;
+  }
+}
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1200px) {
+  
+}
+
+@media (min-width: 1440px) {
+  body {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 0;
+    width: 30%;
+    background-image: url('../images/bg-main-desktop.png');
+  }
+
+  #bg-card-back, #bg-card-front {
+    width: 90%;
+  }
+
+  #bg-card-back {
+    right: -45%;
+    bottom: -50%;
+  }
+
+  #bg-card-back > div {
+    top: 42%;
+    right: 13%;
+  }
+
+  #bg-card-front {
+    top: 23%;
+    bottom: initial;
+    left: 35%;
+  }
+
+  #card-info > div:first-of-type {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  main {
+    width: 70%;
+    padding-top: 0;
+    position: relative;
+  }
+
+  #form-card-info, #div-form-complete {
+    width: 40%;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+  }
 }
